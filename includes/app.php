@@ -367,7 +367,7 @@ function app_header(string $title, string $area, bool $desktop = false): void
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="theme-color" content="#f5f7f1">
 		<title><?= e($title) ?> | AgriBid</title>
-		<link rel="stylesheet" href="/agribid/assets/app.css?v=26">
+		<link rel="stylesheet" href="/agribid/assets/app.css?v=27">
 	</head>
 	<body class="<?= e($area) ?>-area<?= $desktop ? ' desktop-area' : '' ?>">
 		<div class="app-frame">
