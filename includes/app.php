@@ -367,7 +367,7 @@ function app_header(string $title, string $area, bool $desktop = false): void
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="theme-color" content="#f5f7f1">
 		<title><?= e($title) ?> | AgriBid</title>
-		<link rel="stylesheet" href="/agribid/assets/app.css?v=27">
+		<link rel="stylesheet" href="/agribid/assets/app.css?v=32">
 	</head>
 	<body class="<?= e($area) ?>-area<?= $desktop ? ' desktop-area' : '' ?>">
 		<div class="app-frame">
@@ -426,4 +426,31 @@ function log_notification(mysqli $conn, int $userId, string $title, string $mess
 	$stmt->bind_param('iss', $userId, $title, $message);
 	$stmt->execute();
 	$stmt->close();
+}
+
+function app_status_pill(string $status): string
+{
+	$status = strtolower(trim($status));
+	$class = 'status-pending';
+	$label = ucfirst($status);
+
+	switch ($status) {
+		case 'verified':
+		case 'completed':
+		case 'accepted':
+		case 'harvested':
+		case 'open':
+		case 'awarded':
+			$class = 'status-' . $status;
+			break;
+		case 'closed':
+		case 'cancelled':
+		case 'declined':
+		case 'rejected':
+		case 'suspended':
+			$class = 'status-' . $status;
+			break;
+	}
+
+	return '<span class="status-pill ' . htmlspecialchars($class) . '">' . htmlspecialchars($label) . '</span>';
 }
